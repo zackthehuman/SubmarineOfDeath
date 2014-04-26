@@ -24,6 +24,21 @@ void handleEvent(sf::Event& event)
 	}
 }
 
+void update()
+{
+	bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+	bool up = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+	bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+	bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+
+	if (down ^ up) {
+		sprite_submarine.move(0, down - up);
+	}
+	if (right ^ left) {
+		sprite_submarine.move(right - left, 0);
+	}
+}
+
 int main()
 {
 	window.create({800, 600}, "Beneath the Surface");
@@ -41,17 +56,7 @@ int main()
 			handleEvent(event);
 		}
 
-		bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-		bool up = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::W);
-		bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-		bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-
-		if (down ^ up) {
-			sprite_submarine.move(0, down - up);
-		}
-		if (right ^ left) {
-			sprite_submarine.move(right - left, 0);
-		}
+		update();
 
 		window.clear({20, 102, 126});
 
