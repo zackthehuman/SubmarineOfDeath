@@ -16,6 +16,7 @@ int main()
 	texture_submarine.loadFromFile("../res/submarine.png");
 
 	sprite_squid.setTexture(texture_squid);
+	sprite_squid.setPosition({600, 400});
 	sprite_submarine.setTexture(texture_submarine);
 
 	while (window.isOpen()) {
