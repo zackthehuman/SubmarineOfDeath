@@ -68,6 +68,11 @@ void update(float dt)
 	bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 	bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 
+	for (auto& squid : squids) {
+		auto delta = normalize(sprite_submarine.getPosition() - squid.position);
+		squid.position += dt * 80.f * delta;
+	}
+
 	if (down ^ up) {
 		sprite_submarine.move(dt * submarine_speed_y * sf::Vector2f(0, down - up));
 	}
