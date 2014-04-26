@@ -13,6 +13,7 @@ sf::Texture texture_torpedo;
 sf::Texture texture_explosion;
 sf::Texture texture_gameover;
 sf::Texture texture_level;
+sf::Texture texture_numbers;
 
 sf::Sprite sprite_squid;
 sf::Sprite sprite_submarine;
@@ -20,6 +21,7 @@ sf::Sprite sprite_torpedo;
 sf::Sprite sprite_explosion;
 sf::Sprite sprite_gameover;
 sf::Sprite sprite_level;
+sf::Sprite sprite_numbers;
 
 enum State {
 	NEW_LEVEL,
@@ -190,6 +192,7 @@ int main()
 	texture_explosion.loadFromFile("../res/explosion.png");
 	texture_gameover.loadFromFile("../res/gameover.png");
 	texture_level.loadFromFile("../res/level.png");
+	texture_numbers.loadFromFile("../res/numbers.png");
 
 	sprite_squid.setTexture(texture_squid);
 	sprite_squid.setOrigin(sf::Vector2f(texture_squid.getSize() / 2u));
@@ -203,6 +206,8 @@ int main()
 	sprite_gameover.setOrigin(sf::Vector2f(texture_gameover.getSize() / 2u));
 	sprite_level.setTexture(texture_level);
 	sprite_level.setOrigin(sf::Vector2f(texture_level.getSize() / 2u));
+	sprite_level.setPosition(sf::Vector2f(window.getSize()/2u) - sf::Vector2f(100, 0));
+	sprite_numbers.setTexture(texture_numbers);
 
 	sf::Clock theclock;
 
