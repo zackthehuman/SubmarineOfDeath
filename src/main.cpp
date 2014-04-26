@@ -49,6 +49,7 @@ std::vector<Explosion> explosions;
 
 float game_time = 0.f;
 State game_state = NEW_LEVEL;
+int game_level = 1;
 
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return a.x*b.x + a.y*b.y;
@@ -200,6 +201,7 @@ void draw()
 
 	if (game_state == NEW_LEVEL) {
 		window.draw(sprite_level);
+		draw_number(game_level, sf::Vector2f(window.getSize()/2u) + sf::Vector2f(100, 0));
 	} else if (game_state == GAME_OVER) {
 		window.draw(sprite_gameover);
 	}
