@@ -27,6 +27,7 @@ struct Squid {
 };
 std::vector<Squid> squids;
 
+float game_time = 0.f;
 bool game_over = false;
 
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
@@ -66,6 +67,8 @@ void handleEvent(sf::Event& event)
 
 void update(float dt)
 {
+	game_time += dt;
+
 	if (game_over) return;
 
 	bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S);
