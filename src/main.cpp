@@ -93,6 +93,10 @@ void handleEvent(sf::Event& event)
 		window.close();
 		break;
 	case sf::Event::KeyPressed:
+		if (game_state == NEW_LEVEL) {
+			game_state = PLAYING;
+		}
+
 		switch (event.key.code) {
 		case sf::Keyboard::Escape:
 			window.close();
