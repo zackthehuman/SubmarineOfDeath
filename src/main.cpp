@@ -222,6 +222,7 @@ int main()
 	sprite_squid.setOrigin(sf::Vector2f(texture_squid.getSize() / 2u));
 	sprite_submarine.setTexture(texture_submarine);
 	sprite_submarine.setOrigin(sf::Vector2f(texture_submarine.getSize() / 2u));
+	sprite_submarine.setPosition({50, 300});
 	sprite_torpedo.setTexture(texture_torpedo);
 	sprite_torpedo.setOrigin(sf::Vector2f(texture_torpedo.getSize() / 2u));
 	sprite_explosion.setTexture(texture_explosion);
