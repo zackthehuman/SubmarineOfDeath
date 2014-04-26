@@ -21,6 +21,12 @@ sf::Sprite sprite_explosion;
 sf::Sprite sprite_gameover;
 sf::Sprite sprite_level;
 
+enum State {
+	NEW_LEVEL,
+	PLAYING,
+	GAME_OVER,
+};
+
 struct Torpedo {
 	sf::Vector2f position;
 	bool dead = false;
@@ -40,7 +46,7 @@ struct Explosion {
 std::vector<Explosion> explosions;
 
 float game_time = 0.f;
-bool game_over = false;
+State game_state = NEW_LEVEL;
 
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return a.x*b.x + a.y*b.y;
@@ -67,7 +73,7 @@ void handleEvent(sf::Event& event)
 			window.close();
 			break;
 		case sf::Keyboard::Space:
-			if (game_over) break;
+			if (game_state == GAME_OVER) break;
 			Torpedo torpedo;
 			torpedo.position = sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0);
 			torpedos.push_back(torpedo);
@@ -81,7 +87,7 @@ void update(float dt)
 {
 	game_time += dt;
 
-	if (game_over) {
+	if (game_state == GAME_OVER) {
 		sprite_gameover.setPosition(sf::Vector2f(window.getSize() / 2u) + sf::Vector2f(sin(game_time*6)*30, 0));
 		return;
 	}
@@ -110,7 +116,7 @@ void update(float dt)
 	for (auto& squid : squids) {
 		auto distance = get_distance(sprite_submarine.getPosition(), squid.position);
 		if (distance < 32) {
-			game_over = true;
+			game_state = GAME_OVER;
 			Explosion explosion;
 			explosion.position = sprite_submarine.getPosition();
 			explosion.time_started = game_time;
@@ -162,13 +168,13 @@ void draw()
 	for (auto& explosion : explosions) {
 		sprite_explosion.setPosition(explosion.position);
 		float scale = (game_time - explosion.time_started) + 0.5f;
-		if ( ! game_over)
+		if (game_state == PLAYING)
 			sprite_explosion.setColor({255, 255, 255, static_cast<sf::Uint8>(-((scale*2-1) * 255))});
 		sprite_explosion.setScale(scale, scale);
 		window.draw(sprite_explosion);
 	}
 
-	if (game_over) {
+	if (game_state == GAME_OVER) {
 		window.draw(sprite_gameover);
 	}
 }
