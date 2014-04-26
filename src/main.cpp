@@ -272,9 +272,7 @@ int main()
 
 	sf::Clock theclock;
 
-	Squid squid;
-	squid.position = {600, 400};
-	squids.push_back(squid);
+	prepare_new_level();
 
 	while (window.isOpen()) {
 		sf::Event event;
