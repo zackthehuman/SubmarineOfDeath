@@ -198,7 +198,9 @@ void draw()
 		window.draw(sprite_explosion);
 	}
 
-	if (game_state == GAME_OVER) {
+	if (game_state == NEW_LEVEL) {
+		window.draw(sprite_level);
+	} else if (game_state == GAME_OVER) {
 		window.draw(sprite_gameover);
 	}
 }
