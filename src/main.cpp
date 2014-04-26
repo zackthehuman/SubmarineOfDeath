@@ -160,6 +160,10 @@ void draw()
 		sprite_explosion.setScale(scale, scale);
 		window.draw(sprite_explosion);
 	}
+
+	if (game_over) {
+		window.draw(sprite_gameover);
+	}
 }
 
 int main()
