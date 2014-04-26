@@ -7,9 +7,11 @@ sf::RenderWindow window;
 
 sf::Texture texture_squid;
 sf::Texture texture_submarine;
+sf::Texture texture_torpedo;
 
 sf::Sprite sprite_squid;
 sf::Sprite sprite_submarine;
+sf::Sprite sprite_torpedo;
 
 void handleEvent(sf::Event& event)
 {
@@ -55,10 +57,12 @@ int main()
 
 	texture_squid.loadFromFile("../res/squid.png");
 	texture_submarine.loadFromFile("../res/submarine.png");
+	texture_torpedo.loadFromFile("../res/torpedo.png");
 
 	sprite_squid.setTexture(texture_squid);
 	sprite_squid.setPosition({600, 400});
 	sprite_submarine.setTexture(texture_submarine);
+	sprite_torpedo.setTexture(texture_torpedo);
 
 	sf::Clock theclock;
 
