@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
 
+#include <cmath>
+
 constexpr float submarine_speed_x = 200.f;
 constexpr float submarine_speed_y = 100.f;
 
@@ -24,6 +26,19 @@ struct Squid {
 	sf::Vector2f position;
 };
 std::vector<Squid> squids;
+
+float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
+	return a.x*b.x + a.y*b.y;
+}
+float length(const sf::Vector2f& vector) {
+	return sqrt(dot(vector, vector));
+}
+sf::Vector2f normalize(const sf::Vector2f& vector) {
+	return vector / length(vector);
+}
+float get_distance(const sf::Vector2f& a, const sf::Vector2f& b) {
+	return length(a - b);
+}
 
 void handleEvent(sf::Event& event)
 {
