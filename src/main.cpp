@@ -73,7 +73,7 @@ void handleEvent(sf::Event& event)
 			window.close();
 			break;
 		case sf::Keyboard::Space:
-			if (game_state == GAME_OVER) break;
+			if (game_state != PLAYING) break;
 			Torpedo torpedo;
 			torpedo.position = sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0);
 			torpedos.push_back(torpedo);
