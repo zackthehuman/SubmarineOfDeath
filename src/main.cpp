@@ -13,6 +13,8 @@ sf::Sprite sprite_squid;
 sf::Sprite sprite_submarine;
 sf::Sprite sprite_torpedo;
 
+bool torpedo_has_been_fired = false;
+
 void handleEvent(sf::Event& event)
 {
 	switch (event.type) {
@@ -23,6 +25,10 @@ void handleEvent(sf::Event& event)
 		switch (event.key.code) {
 		case sf::Keyboard::Escape:
 			window.close();
+			break;
+		case sf::Keyboard::Space:
+			torpedo_has_been_fired = true;
+			sprite_torpedo.setPosition(sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0));
 			break;
 		}
 		break;
@@ -42,12 +48,20 @@ void update(float dt)
 	if (right ^ left) {
 		sprite_submarine.move(dt * submarine_speed_x * sf::Vector2f(right - left, 0));
 	}
+
+	if (torpedo_has_been_fired) {
+		sprite_torpedo.move(400 * dt, 0);
+	}
 }
 
 void draw()
 {
 	window.draw(sprite_squid);
 	window.draw(sprite_submarine);
+
+	if (torpedo_has_been_fired) {
+		window.draw(sprite_torpedo);
+	}
 }
 
 int main()
