@@ -235,6 +235,7 @@ int main()
 	sprite_level.setOrigin(sf::Vector2f(texture_level.getSize() / 2u));
 	sprite_level.setPosition(sf::Vector2f(window.getSize()/2u) - sf::Vector2f(100, 0));
 	sprite_numbers.setTexture(texture_numbers);
+	sprite_numbers.setOrigin(sf::Vector2f(texture_numbers.getSize().x / 20u, texture_numbers.getSize().y / 2u));
 
 	sf::Clock theclock;
 
