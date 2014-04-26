@@ -8,6 +8,22 @@ sf::Texture texture_submarine;
 sf::Sprite sprite_squid;
 sf::Sprite sprite_submarine;
 
+void handleEvent(sf::Event& event)
+{
+	switch (event.type) {
+	case sf::Event::Closed:
+		window.close();
+		break;
+	case sf::Event::KeyPressed:
+		switch (event.key.code) {
+		case sf::Keyboard::Escape:
+			window.close();
+			break;
+		}
+		break;
+	}
+}
+
 int main()
 {
 	window.create({800, 600}, "Beneath the Surface");
@@ -22,18 +38,7 @@ int main()
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
-			switch (event.type) {
-			case sf::Event::Closed:
-				window.close();
-				break;
-			case sf::Event::KeyPressed:
-				switch (event.key.code) {
-				case sf::Keyboard::Escape:
-					window.close();
-					break;
-				}
-				break;
-			}
+			handleEvent(event);
 		}
 
 		bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::S);
