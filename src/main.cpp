@@ -86,6 +86,19 @@ void draw_number(int number, sf::Vector2f position)
 	} while (number /= 10);
 }
 
+void prepare_new_level()
+{
+	torpedos.clear();
+
+	for (int i = 0; i < game_level; ++i) {
+		Squid squid;
+		do {
+			squid.position = sf::Vector2f(rand()%800, rand()%600);
+		} while (128 > get_distance(squid.position, sprite_submarine.getPosition()));
+		squids.push_back(squid);
+	}
+}
+
 void handleEvent(sf::Event& event)
 {
 	switch (event.type) {
@@ -115,6 +128,12 @@ void handleEvent(sf::Event& event)
 void update(float dt)
 {
 	game_time += dt;
+
+	if (game_state == PLAYING && squids.size() == 0) {
+		game_state = NEW_LEVEL;
+		game_level++;
+		prepare_new_level();
+	}
 
 	if (game_state == GAME_OVER) {
 		sprite_gameover.setPosition(sf::Vector2f(window.getSize() / 2u) + sf::Vector2f(sin(game_time*6)*30, 0));
