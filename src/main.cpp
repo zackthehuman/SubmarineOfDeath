@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 
+constexpr float submarine_speed_x = 200.f;
+constexpr float submarine_speed_y = 100.f;
+
 sf::RenderWindow window;
 
 sf::Texture texture_squid;
@@ -32,10 +35,10 @@ void update(float dt)
 	bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 
 	if (down ^ up) {
-		sprite_submarine.move(0, down - up);
+		sprite_submarine.move(dt * submarine_speed_y * sf::Vector2f(0, down - up));
 	}
 	if (right ^ left) {
-		sprite_submarine.move(right - left, 0);
+		sprite_submarine.move(dt * submarine_speed_x * sf::Vector2f(right - left, 0));
 	}
 }
 
