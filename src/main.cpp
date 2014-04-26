@@ -19,11 +19,13 @@ sf::Sprite sprite_explosion;
 
 struct Torpedo {
 	sf::Vector2f position;
+	bool dead = false;
 };
 std::vector<Torpedo> torpedos;
 
 struct Squid {
 	sf::Vector2f position;
+	bool dead = false;
 };
 std::vector<Squid> squids;
 
@@ -98,7 +100,23 @@ void update(float dt)
 			game_over = true;
 			break;
 		}
+
+		for (auto& torpedo : torpedos) {
+			distance = get_distance(torpedo.position, squid.position);
+			if (distance < 52) {
+				torpedo.dead = true;
+				squid.dead = true;
+			}
+		}
 	}
+
+	squids.erase(std::remove_if(squids.begin(), squids.end(), [](const Squid& squid) {
+		return squid.dead;
+	}), squids.end());
+
+	torpedos.erase(std::remove_if(torpedos.begin(), torpedos.end(), [](const Torpedo& torpedo) {
+		return torpedo.dead || torpedo.position.x > 800;
+	}), torpedos.end());
 }
 
 void draw()
