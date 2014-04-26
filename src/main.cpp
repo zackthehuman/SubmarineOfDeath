@@ -154,6 +154,7 @@ void update(float dt)
 			explosion.position = sprite_submarine.getPosition();
 			explosion.time_started = game_time;
 			explosions.push_back(explosion);
+			sprite_explosion.setColor({255, 255, 255, 255});
 			break;
 		}
 
