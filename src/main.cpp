@@ -27,6 +27,8 @@ struct Squid {
 };
 std::vector<Squid> squids;
 
+bool game_over = false;
+
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return a.x*b.x + a.y*b.y;
 }
@@ -52,6 +54,7 @@ void handleEvent(sf::Event& event)
 			window.close();
 			break;
 		case sf::Keyboard::Space:
+			if (game_over) break;
 			Torpedo torpedo;
 			torpedo.position = sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0);
 			torpedos.push_back(torpedo);
@@ -63,6 +66,8 @@ void handleEvent(sf::Event& event)
 
 void update(float dt)
 {
+	if (game_over) return;
+
 	bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 	bool up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W);
 	bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D);
@@ -82,6 +87,14 @@ void update(float dt)
 
 	for (auto& torpedo : torpedos) {
 		torpedo.position.x += 400 * dt;
+	}
+
+	for (auto& squid : squids) {
+		auto distance = get_distance(sprite_submarine.getPosition(), squid.position);
+		if (distance < 32) {
+			game_over = true;
+			break;
+		}
 	}
 }
 
