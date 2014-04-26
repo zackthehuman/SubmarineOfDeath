@@ -63,6 +63,28 @@ float get_distance(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return length(a - b);
 }
 
+void set_number(int number)
+{
+	auto size = texture_numbers.getSize();
+	sf::IntRect rect = {static_cast<int>(size.x/10.f*number), 0, static_cast<int>(size.x/10.f), static_cast<int>(size.y)};
+	sprite_numbers.setTextureRect(rect);
+}
+
+void draw_number(int number, sf::Vector2f position)
+{
+	int number_width = texture_numbers.getSize().x / 10.f;
+	int tmp_number = number;
+	int num_digits = -1; do { tmp_number /= 10; num_digits++; } while (tmp_number != 0);
+
+	int i = 0;
+	do {
+		set_number(number % 10);
+		sprite_numbers.setPosition(position + sf::Vector2f(number_width*(num_digits-i), 0));
+		window.draw(sprite_numbers);
+		i++;
+	} while (number /= 10);
+}
+
 void handleEvent(sf::Event& event)
 {
 	switch (event.type) {
