@@ -18,6 +18,11 @@ struct Torpedo {
 };
 std::vector<Torpedo> torpedos;
 
+struct Squid {
+	sf::Vector2f position;
+};
+std::vector<Squid> squids;
+
 void handleEvent(sf::Event& event)
 {
 	switch (event.type) {
@@ -60,7 +65,11 @@ void update(float dt)
 
 void draw()
 {
-	window.draw(sprite_squid);
+	for (auto& squid : squids) {
+		sprite_squid.setPosition(squid.position);
+		window.draw(sprite_squid);
+	}
+
 	window.draw(sprite_submarine);
 
 	for (auto& torpedo : torpedos) {
@@ -79,11 +88,14 @@ int main()
 	texture_torpedo.loadFromFile("../res/torpedo.png");
 
 	sprite_squid.setTexture(texture_squid);
-	sprite_squid.setPosition({600, 400});
 	sprite_submarine.setTexture(texture_submarine);
 	sprite_torpedo.setTexture(texture_torpedo);
 
 	sf::Clock theclock;
+
+	Squid squid;
+	squid.position = {600, 400};
+	squids.push_back(squid);
 
 	while (window.isOpen()) {
 		sf::Event event;
