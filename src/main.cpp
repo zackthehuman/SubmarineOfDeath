@@ -13,7 +13,10 @@ sf::Sprite sprite_squid;
 sf::Sprite sprite_submarine;
 sf::Sprite sprite_torpedo;
 
-bool torpedo_has_been_fired = false;
+struct Torpedo {
+	sf::Vector2f position;
+};
+std::vector<Torpedo> torpedos;
 
 void handleEvent(sf::Event& event)
 {
@@ -27,8 +30,9 @@ void handleEvent(sf::Event& event)
 			window.close();
 			break;
 		case sf::Keyboard::Space:
-			torpedo_has_been_fired = true;
-			sprite_torpedo.setPosition(sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0));
+			Torpedo torpedo;
+			torpedo.position = sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0);
+			torpedos.push_back(torpedo);
 			break;
 		}
 		break;
@@ -49,8 +53,8 @@ void update(float dt)
 		sprite_submarine.move(dt * submarine_speed_x * sf::Vector2f(right - left, 0));
 	}
 
-	if (torpedo_has_been_fired) {
-		sprite_torpedo.move(400 * dt, 0);
+	for (auto& torpedo : torpedos) {
+		torpedo.position.x += 400 * dt;
 	}
 }
 
@@ -59,7 +63,8 @@ void draw()
 	window.draw(sprite_squid);
 	window.draw(sprite_submarine);
 
-	if (torpedo_has_been_fired) {
+	for (auto& torpedo : torpedos) {
+		sprite_torpedo.setPosition(torpedo.position);
 		window.draw(sprite_torpedo);
 	}
 }
