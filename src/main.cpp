@@ -8,10 +8,12 @@ sf::RenderWindow window;
 sf::Texture texture_squid;
 sf::Texture texture_submarine;
 sf::Texture texture_torpedo;
+sf::Texture texture_explosion;
 
 sf::Sprite sprite_squid;
 sf::Sprite sprite_submarine;
 sf::Sprite sprite_torpedo;
+sf::Sprite sprite_explosion;
 
 struct Torpedo {
 	sf::Vector2f position;
@@ -86,10 +88,12 @@ int main()
 	texture_squid.loadFromFile("../res/squid.png");
 	texture_submarine.loadFromFile("../res/submarine.png");
 	texture_torpedo.loadFromFile("../res/torpedo.png");
+	texture_explosion.loadFromFile("../res/explosion.png");
 
 	sprite_squid.setTexture(texture_squid);
 	sprite_submarine.setTexture(texture_submarine);
 	sprite_torpedo.setTexture(texture_torpedo);
+	sprite_explosion.setTexture(texture_explosion);
 
 	sf::Clock theclock;
 
