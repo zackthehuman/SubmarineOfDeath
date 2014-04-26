@@ -190,7 +190,10 @@ void update(float dt)
 			}
 		}
 	}
+}
 
+void clean()
+{
 	squids.erase(std::remove_if(squids.begin(), squids.end(), [](const Squid& squid) {
 		return squid.dead;
 	}), squids.end());
@@ -280,6 +283,9 @@ int main()
 		}
 
 		update(theclock.restart().asSeconds());
+		if (game_state != GAME_OVER) {
+			clean();
+		}
 
 		window.clear({20, 102, 126});
 
