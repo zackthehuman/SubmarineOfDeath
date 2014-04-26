@@ -160,6 +160,8 @@ void draw()
 	for (auto& explosion : explosions) {
 		sprite_explosion.setPosition(explosion.position);
 		float scale = (game_time - explosion.time_started) + 0.5f;
+		if ( ! game_over)
+			sprite_explosion.setColor({255, 255, 255, static_cast<sf::Uint8>(-((scale*2-1) * 255))});
 		sprite_explosion.setScale(scale, scale);
 		window.draw(sprite_explosion);
 	}
