@@ -3,7 +3,7 @@
 #include <cmath>
 
 constexpr float submarine_speed_x = 200.f;
-constexpr float submarine_speed_y = 100.f;
+constexpr float submarine_speed_y = 120.f;
 
 sf::RenderWindow window;
 
