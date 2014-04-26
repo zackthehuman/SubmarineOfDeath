@@ -36,6 +36,18 @@ int main()
 			}
 		}
 
+		bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+		bool up = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+		bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+		bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+
+		if (down ^ up) {
+			sprite_submarine.move(0, down - up);
+		}
+		if (right ^ left) {
+			sprite_submarine.move(right - left, 0);
+		}
+
 		window.clear({20, 102, 126});
 
 		window.draw(sprite_squid);
