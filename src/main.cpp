@@ -48,6 +48,7 @@ void draw()
 int main()
 {
 	window.create({800, 600}, "Beneath the Surface");
+	window.setFramerateLimit(60);
 
 	texture_squid.loadFromFile("../res/squid.png");
 	texture_submarine.loadFromFile("../res/submarine.png");
