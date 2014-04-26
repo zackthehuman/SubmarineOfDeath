@@ -35,7 +35,7 @@ int main()
 			}
 		}
 
-		window.clear();
+		window.clear({20, 102, 126});
 
 		window.draw(sprite_squid);
 		window.draw(sprite_submarine);
