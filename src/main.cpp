@@ -2,9 +2,17 @@
 
 sf::RenderWindow window;
 
+sf::Texture texture_squid;
+
+sf::Sprite sprite_squid;
+
 int main()
 {
 	window.create({800, 600}, "Beneath the Surface");
+
+	texture_squid.loadFromFile("../res/squid.png");
+
+	sprite_squid.setTexture(texture_squid);
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -24,6 +32,8 @@ int main()
 		}
 
 		window.clear();
+
+		window.draw(sprite_squid);
 
 		window.display();
 	}
