@@ -124,9 +124,13 @@ int main()
 	texture_explosion.loadFromFile("../res/explosion.png");
 
 	sprite_squid.setTexture(texture_squid);
+	sprite_squid.setOrigin(sf::Vector2f(texture_squid.getSize() / 2u));
 	sprite_submarine.setTexture(texture_submarine);
+	sprite_submarine.setOrigin(sf::Vector2f(texture_submarine.getSize() / 2u));
 	sprite_torpedo.setTexture(texture_torpedo);
+	sprite_torpedo.setOrigin(sf::Vector2f(texture_torpedo.getSize() / 2u));
 	sprite_explosion.setTexture(texture_explosion);
+	sprite_explosion.setOrigin(sf::Vector2f(texture_explosion.getSize() / 2u));
 
 	sf::Clock theclock;
 
