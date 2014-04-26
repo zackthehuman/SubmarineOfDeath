@@ -39,6 +39,12 @@ void update()
 	}
 }
 
+void draw()
+{
+	window.draw(sprite_squid);
+	window.draw(sprite_submarine);
+}
+
 int main()
 {
 	window.create({800, 600}, "Beneath the Surface");
@@ -60,8 +66,7 @@ int main()
 
 		window.clear({20, 102, 126});
 
-		window.draw(sprite_squid);
-		window.draw(sprite_submarine);
+		draw();
 
 		window.display();
 	}
