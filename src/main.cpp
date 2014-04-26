@@ -218,6 +218,8 @@ void draw()
 
 int main()
 {
+	srand(time(NULL));
+
 	window.create({800, 600}, "Beneath the Surface");
 	window.setFramerateLimit(60);
 
