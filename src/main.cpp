@@ -24,7 +24,7 @@ void handleEvent(sf::Event& event)
 	}
 }
 
-void update()
+void update(float dt)
 {
 	bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 	bool up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W);
@@ -57,13 +57,15 @@ int main()
 	sprite_squid.setPosition({600, 400});
 	sprite_submarine.setTexture(texture_submarine);
 
+	sf::Clock theclock;
+
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			handleEvent(event);
 		}
 
-		update();
+		update(theclock.restart().asSeconds());
 
 		window.clear({20, 102, 126});
 
