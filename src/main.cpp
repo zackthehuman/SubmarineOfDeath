@@ -104,6 +104,10 @@ void update(float dt)
 		auto distance = get_distance(sprite_submarine.getPosition(), squid.position);
 		if (distance < 32) {
 			game_over = true;
+			Explosion explosion;
+			explosion.position = sprite_submarine.getPosition();
+			explosion.time_started = game_time;
+			explosions.push_back(explosion);
 			break;
 		}
 
