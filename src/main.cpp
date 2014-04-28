@@ -313,6 +313,8 @@ int main()
 	sprite_numbers.setTexture(texture_numbers);
 	sprite_numbers.setOrigin(sf::Vector2f(texture_numbers.getSize().x / 20u, texture_numbers.getSize().y / 2u));
 
+	sound_pool.resize(4);
+
 	sf::Clock theclock;
 
 	prepare_new_level();
