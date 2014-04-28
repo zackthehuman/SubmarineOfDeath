@@ -15,6 +15,10 @@ sf::Texture texture_explosion;
 sf::Texture texture_gameover;
 sf::Texture texture_level;
 sf::Texture texture_numbers;
+sf::Texture texture_score;
+sf::Texture texture_torpedosfired;
+sf::Texture texture_monsterskilled;
+sf::Texture texture_minus;
 
 sf::Sprite sprite_squid;
 sf::Sprite sprite_submarine;
@@ -23,6 +27,10 @@ sf::Sprite sprite_explosion;
 sf::Sprite sprite_gameover;
 sf::Sprite sprite_level;
 sf::Sprite sprite_numbers;
+sf::Sprite sprite_score;
+sf::Sprite sprite_torpedosfired;
+sf::Sprite sprite_monsterskilled;
+sf::Sprite sprite_minus;
 
 std::map<std::string, sf::SoundBuffer> sound_buffers;
 std::vector<sf::Sound> sound_pool;
@@ -341,6 +349,10 @@ int main()
 	texture_gameover.loadFromFile("../res/gameover.png");
 	texture_level.loadFromFile("../res/level.png");
 	texture_numbers.loadFromFile("../res/numbers.png");
+	texture_score.loadFromFile("../res/score.png");
+	texture_torpedosfired.loadFromFile("../res/torpedosfired.png");
+	texture_monsterskilled.loadFromFile("../res/monsterskilled.png");
+	texture_minus.loadFromFile("../res/minus.png");
 
 	sprite_squid.setTexture(texture_squid);
 	sprite_squid.setOrigin(sf::Vector2f(texture_squid.getSize() / 2u));
@@ -358,6 +370,14 @@ int main()
 	sprite_level.setPosition(sf::Vector2f(window.getSize()/2u) - sf::Vector2f(100, 0));
 	sprite_numbers.setTexture(texture_numbers);
 	sprite_numbers.setOrigin(sf::Vector2f(texture_numbers.getSize().x / 20u, texture_numbers.getSize().y / 2u));
+	sprite_score.setTexture(texture_score);
+	sprite_score.setOrigin(sf::Vector2f(texture_score.getSize() / 2u));
+	sprite_torpedosfired.setTexture(texture_torpedosfired);
+	sprite_torpedosfired.setOrigin(sf::Vector2f(texture_torpedosfired.getSize() / 2u));
+	sprite_monsterskilled.setTexture(texture_monsterskilled);
+	sprite_monsterskilled.setOrigin(sf::Vector2f(texture_monsterskilled.getSize() / 2u));
+	sprite_minus.setTexture(texture_minus);
+	sprite_minus.setOrigin(sf::Vector2f(texture_minus.getSize() / 2u));
 
 	pause_rect1.setOrigin(pause_rect1.getSize() / 2.f);
 	pause_rect2.setOrigin(pause_rect2.getSize() / 2.f);
