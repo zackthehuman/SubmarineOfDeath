@@ -27,6 +27,7 @@ sf::Sprite sprite_numbers;
 std::map<std::string, sf::SoundBuffer> sound_buffers;
 std::vector<sf::Sound> sound_pool;
 size_t sound_pool_current = 0;
+sf::Sound beepboop_sound;
 
 enum State {
 	NEW_LEVEL,
@@ -324,10 +325,15 @@ int main()
 	load_sound("explosion");
 	load_sound("gameover");
 	load_sound("pew");
+	load_sound("beepboop");
+
+	beepboop_sound.setBuffer(sound_buffers["beepboop"]);
 
 	sf::Clock theclock;
 
 	prepare_new_level();
+
+	beepboop_sound.play();
 
 	while (window.isOpen()) {
 		sf::Event event;
