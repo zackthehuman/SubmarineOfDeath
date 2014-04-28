@@ -219,6 +219,7 @@ void update(float dt)
 			explosions.push_back(explosion);
 			sprite_explosion.setColor({255, 255, 255, 255});
 			play_sound("explosion");
+			play_sound("gameover");
 			break;
 		}
 
@@ -321,6 +322,7 @@ int main()
 	sound_pool.resize(4);
 	load_sound("splash");
 	load_sound("explosion");
+	load_sound("gameover");
 	load_sound("pew");
 
 	sf::Clock theclock;
