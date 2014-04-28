@@ -148,6 +148,7 @@ void handleEvent(sf::Event& event)
 			Torpedo torpedo;
 			torpedo.position = sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0);
 			torpedos.push_back(torpedo);
+			play_sound("pew");
 			break;
 		}
 		break;
@@ -320,6 +321,7 @@ int main()
 	sound_pool.resize(4);
 	load_sound("splash");
 	load_sound("explosion");
+	load_sound("pew");
 
 	sf::Clock theclock;
 
