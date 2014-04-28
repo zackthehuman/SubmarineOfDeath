@@ -348,8 +348,10 @@ void draw()
 		window.draw(sprite_gameover);
 		window.draw(sprite_score);
 		window.draw(sprite_monsterskilled);
+		window.draw(sprite_torpedosfired);
 		draw_number(num_monsters_killed*2 - num_torpedos_fired, {450, 120});
 		draw_number(num_monsters_killed, {450, 445});
+		draw_number(num_torpedos_fired, {450, 530});
 	} else if (game_state == PAUSED) {
 		fullscreen_rect.setFillColor({0, 0, 0, 128});
 		window.draw(fullscreen_rect);
@@ -397,7 +399,8 @@ int main()
 	sprite_score.setOrigin(sf::Vector2f(texture_score.getSize() / 2u));
 	sprite_score.setPosition(250, 110);
 	sprite_torpedosfired.setTexture(texture_torpedosfired);
-	sprite_torpedosfired.setOrigin(sf::Vector2f(texture_torpedosfired.getSize() / 2u));
+	sprite_torpedosfired.setOrigin(sf::Vector2f(texture_torpedosfired.getSize().x, texture_torpedosfired.getSize().y / 2u));
+	sprite_torpedosfired.setPosition(380, 520);
 	sprite_monsterskilled.setTexture(texture_monsterskilled);
 	sprite_monsterskilled.setOrigin(sf::Vector2f(texture_monsterskilled.getSize().x, texture_monsterskilled.getSize().y / 2u));
 	sprite_monsterskilled.setPosition(380, 440);
