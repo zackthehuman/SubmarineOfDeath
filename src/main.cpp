@@ -111,6 +111,10 @@ void prepare_new_level()
 		} while (128 > get_distance(squid.position, sprite_submarine.getPosition()));
 		squids.push_back(squid);
 	}
+
+	if (game_level == 1) {
+		beepboop_sound.play();
+	}
 }
 
 void load_sound(std::string name)
@@ -374,8 +378,6 @@ int main()
 	sf::Clock theclock;
 
 	prepare_new_level();
-
-	beepboop_sound.play();
 
 	while (window.isOpen()) {
 		sf::Event event;
