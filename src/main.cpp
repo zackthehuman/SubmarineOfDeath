@@ -72,6 +72,8 @@ int game_level = 1;
 float game_over_time;
 float game_time_shot = 0;
 
+size_t num_torpedos_fired = 0;
+
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return a.x*b.x + a.y*b.y;
 }
@@ -116,6 +118,7 @@ void draw_number(int number, sf::Vector2f position)
 void prepare_new_game()
 {
 	game_level = 1;
+	num_torpedos_fired = 0;
 	game_state = NEW_LEVEL;
 	prepare_new_level();
 }
@@ -201,6 +204,7 @@ void handleEvent(sf::Event& event)
 				torpedos.push_back(torpedo);
 				play_sound("pew");
 				game_time_shot = game_time;
+				num_torpedos_fired++;
 			}
 			break;
 		}
