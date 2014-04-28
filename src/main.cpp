@@ -217,6 +217,7 @@ void update(float dt)
 			explosion.time_started = game_time;
 			explosions.push_back(explosion);
 			sprite_explosion.setColor({255, 255, 255, 255});
+			play_sound("explosion");
 			break;
 		}
 
@@ -231,6 +232,7 @@ void update(float dt)
 				explosion.time_started = game_time;
 				explosions.push_back(explosion);
 
+				play_sound("explosion");
 				play_sound("splash");
 			}
 		}
@@ -317,6 +319,7 @@ int main()
 
 	sound_pool.resize(4);
 	load_sound("splash");
+	load_sound("explosion");
 
 	sf::Clock theclock;
 
