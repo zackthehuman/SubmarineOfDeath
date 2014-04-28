@@ -62,6 +62,7 @@ float game_time = 0.f;
 State game_state = NEW_LEVEL;
 int game_level = 1;
 float game_over_time;
+float game_time_shot = 0;
 
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return a.x*b.x + a.y*b.y;
@@ -171,10 +172,13 @@ void handleEvent(sf::Event& event)
 			break;
 		case sf::Keyboard::Space:
 			if (game_state != PLAYING) break;
-			Torpedo torpedo;
-			torpedo.position = sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0);
-			torpedos.push_back(torpedo);
-			play_sound("pew");
+			if (game_time > game_time_shot + 0.3f) {
+				Torpedo torpedo;
+				torpedo.position = sprite_submarine.getPosition() + sf::Vector2f(texture_submarine.getSize().x-10, 0);
+				torpedos.push_back(torpedo);
+				play_sound("pew");
+				game_time_shot = game_time;
+			}
 			break;
 		}
 		break;
