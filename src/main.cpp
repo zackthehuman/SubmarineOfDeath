@@ -113,6 +113,13 @@ void draw_number(int number, sf::Vector2f position)
 	} while (number /= 10);
 }
 
+void prepare_new_game()
+{
+	game_level = 1;
+	game_state = NEW_LEVEL;
+	prepare_new_level();
+}
+
 void prepare_new_level()
 {
 	torpedos.clear();
@@ -172,9 +179,7 @@ void handleEvent(sf::Event& event)
 			break;
 		} else if (game_state == GAME_OVER) {
 			if (game_time > game_over_time + 1.f) {
-				game_level = 1;
-				game_state = NEW_LEVEL;
-				prepare_new_level();
+				prepare_new_game();
 				break;
 			}
 		} else if (game_state == PAUSED) {
