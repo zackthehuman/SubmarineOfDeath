@@ -73,6 +73,7 @@ float game_over_time;
 float game_time_shot = 0;
 
 size_t num_torpedos_fired = 0;
+size_t num_monsters_killed = 0;
 
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return a.x*b.x + a.y*b.y;
@@ -119,6 +120,7 @@ void prepare_new_game()
 {
 	game_level = 1;
 	num_torpedos_fired = 0;
+	num_monsters_killed = 0;
 	game_state = NEW_LEVEL;
 	prepare_new_level();
 }
@@ -294,6 +296,8 @@ void update(float dt)
 
 				play_sound("explosion");
 				play_sound("splash");
+
+				num_monsters_killed++;
 			}
 		}
 	}
