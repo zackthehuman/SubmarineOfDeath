@@ -301,7 +301,7 @@ int main()
 {
 	srand(time(NULL));
 
-	window.create({800, 600}, "Beneath the Surface");
+	window.create({800, 600}, "Submarine of Death");
 	window.setFramerateLimit(60);
 
 	texture_squid.loadFromFile("../res/squid.png");

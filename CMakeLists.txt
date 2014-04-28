@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(BeneathTheSurface)
+project(SubmarineOfDeath)
 
 file(GLOB SOURCE_FILES "src/*.cpp")
 
@@ -14,9 +14,9 @@ include_directories(
 	${SFML_INCLUDE_DIRS}
 )
 
-add_executable(BeneathTheSurface ${SOURCE_FILES})
+add_executable(SubmarineOfDeath ${SOURCE_FILES})
 
 target_link_libraries(
-	BeneathTheSurface
+	SubmarineOfDeath
 	${SFML_LIBRARIES}
 )
