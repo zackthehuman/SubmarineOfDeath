@@ -98,9 +98,15 @@ void draw_number(int number, sf::Vector2f position)
 	int tmp_number = number;
 	int num_digits = -1; do { tmp_number /= 10; num_digits++; } while (tmp_number != 0);
 
+	if (number < 0) {
+		num_digits++;
+		sprite_minus.setPosition(position - sf::Vector2f(5, 6));
+		window.draw(sprite_minus);
+	}
+
 	int i = 0;
 	do {
-		set_number(number % 10);
+		set_number(abs(number % 10));
 		sprite_numbers.setPosition(position + sf::Vector2f(number_width*(num_digits-i), 0));
 		window.draw(sprite_numbers);
 		i++;
