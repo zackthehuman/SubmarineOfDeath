@@ -158,6 +158,9 @@ void handleEvent(sf::Event& event)
 				prepare_new_level();
 				break;
 			}
+		} else if (game_state == PAUSED) {
+			game_state = PLAYING;
+			break;
 		}
 
 		switch (event.key.code) {
