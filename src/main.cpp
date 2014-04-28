@@ -95,6 +95,7 @@ void draw_number(int number, sf::Vector2f position)
 void prepare_new_level()
 {
 	torpedos.clear();
+	squids.clear();
 
 	for (int i = 0; i < game_level; ++i) {
 		Squid squid;
