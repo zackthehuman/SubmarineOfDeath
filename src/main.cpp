@@ -230,6 +230,8 @@ void update(float dt)
 				explosion.position = torpedo.position;
 				explosion.time_started = game_time;
 				explosions.push_back(explosion);
+
+				play_sound("splash");
 			}
 		}
 	}
@@ -314,6 +316,7 @@ int main()
 	sprite_numbers.setOrigin(sf::Vector2f(texture_numbers.getSize().x / 20u, texture_numbers.getSize().y / 2u));
 
 	sound_pool.resize(4);
+	load_sound("splash");
 
 	sf::Clock theclock;
 
