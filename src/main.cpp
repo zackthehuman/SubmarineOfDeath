@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include <cmath>
 
@@ -22,6 +23,10 @@ sf::Sprite sprite_explosion;
 sf::Sprite sprite_gameover;
 sf::Sprite sprite_level;
 sf::Sprite sprite_numbers;
+
+std::map<std::string, sf::SoundBuffer> sound_buffers;
+std::vector<sf::Sound> sound_pool;
+size_t sound_pool_current = 0;
 
 enum State {
 	NEW_LEVEL,
@@ -97,6 +102,30 @@ void prepare_new_level()
 		} while (128 > get_distance(squid.position, sprite_submarine.getPosition()));
 		squids.push_back(squid);
 	}
+}
+
+void load_sound(std::string name)
+{
+	sf::SoundBuffer buffer;
+	buffer.loadFromFile("../res/"+ name +".wav");
+	sound_buffers[name] = buffer;
+}
+
+sf::Sound& get_sound_from_pool()
+{
+	size_t i = sound_pool_current;
+
+	sound_pool_current++;
+	sound_pool_current %= sound_pool.size();
+
+	return sound_pool[i];
+}
+
+void play_sound(std::string name)
+{
+	auto& sound = get_sound_from_pool();
+	sound.setBuffer(sound_buffers[name]);
+	sound.play();
 }
 
 void handleEvent(sf::Event& event)
