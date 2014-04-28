@@ -142,6 +142,11 @@ void handleEvent(sf::Event& event)
 	case sf::Event::Closed:
 		window.close();
 		break;
+	case sf::Event::LostFocus:
+		if (game_state == PLAYING) {
+			game_state = PAUSED;
+		}
+		break;
 	case sf::Event::KeyPressed:
 		if (game_state == NEW_LEVEL) {
 			game_state = PLAYING;
