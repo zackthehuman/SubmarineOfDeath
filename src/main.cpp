@@ -132,6 +132,8 @@ void prepare_new_level()
 	if (game_level == 1) {
 		beepboop_sound.play();
 	}
+
+	sprite_level.setPosition(sf::Vector2f(window.getSize()/2u) - sf::Vector2f(100, 0));
 }
 
 void prepare_new_game()
@@ -345,11 +347,14 @@ void draw()
 		window.draw(sprite_level);
 		draw_number(game_level, sf::Vector2f(window.getSize()/2u) + sf::Vector2f(100, 0));
 	} else if (game_state == GAME_OVER) {
+		sprite_level.setPosition(sf::Vector2f(window.getSize()/2u) - sf::Vector2f(140, 140));
 		window.draw(sprite_gameover);
 		window.draw(sprite_score);
+		window.draw(sprite_level);
 		window.draw(sprite_monsterskilled);
 		window.draw(sprite_torpedosfired);
 		draw_number(num_monsters_killed*2 - num_torpedos_fired, {450, 70});
+		draw_number(game_level, {450, 170});
 		draw_number(num_monsters_killed, {450, 445});
 		draw_number(num_torpedos_fired, {450, 530});
 	} else if (game_state == PAUSED) {
@@ -392,7 +397,6 @@ int main()
 	sprite_gameover.setOrigin(sf::Vector2f(texture_gameover.getSize() / 2u));
 	sprite_level.setTexture(texture_level);
 	sprite_level.setOrigin(sf::Vector2f(texture_level.getSize() / 2u));
-	sprite_level.setPosition(sf::Vector2f(window.getSize()/2u) - sf::Vector2f(100, 0));
 	sprite_numbers.setTexture(texture_numbers);
 	sprite_numbers.setOrigin(sf::Vector2f(texture_numbers.getSize().x / 20u, texture_numbers.getSize().y / 2u));
 	sprite_score.setTexture(texture_score);
