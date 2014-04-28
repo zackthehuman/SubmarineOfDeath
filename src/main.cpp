@@ -29,9 +29,14 @@ std::vector<sf::Sound> sound_pool;
 size_t sound_pool_current = 0;
 sf::Sound beepboop_sound;
 
+sf::RectangleShape fullscreen_rect {{800, 600}};
+sf::RectangleShape pause_rect1 {{20, 100}};
+sf::RectangleShape pause_rect2 {{20, 100}};
+
 enum State {
 	NEW_LEVEL,
 	PLAYING,
+	PAUSED,
 	GAME_OVER,
 };
 
@@ -181,7 +186,7 @@ void update(float dt)
 		return;
 	}
 
-	if (game_state == NEW_LEVEL) {
+	if (game_state == NEW_LEVEL || game_state == PAUSED) {
 		return;
 	}
 
@@ -296,6 +301,11 @@ void draw()
 		draw_number(game_level, sf::Vector2f(window.getSize()/2u) + sf::Vector2f(100, 0));
 	} else if (game_state == GAME_OVER) {
 		window.draw(sprite_gameover);
+	} else if (game_state == PAUSED) {
+		fullscreen_rect.setFillColor({0, 0, 0, 128});
+		window.draw(fullscreen_rect);
+		window.draw(pause_rect1);
+		window.draw(pause_rect2);
 	}
 }
 
@@ -330,6 +340,13 @@ int main()
 	sprite_level.setPosition(sf::Vector2f(window.getSize()/2u) - sf::Vector2f(100, 0));
 	sprite_numbers.setTexture(texture_numbers);
 	sprite_numbers.setOrigin(sf::Vector2f(texture_numbers.getSize().x / 20u, texture_numbers.getSize().y / 2u));
+
+	pause_rect1.setOrigin(pause_rect1.getSize() / 2.f);
+	pause_rect2.setOrigin(pause_rect2.getSize() / 2.f);
+	pause_rect1.setFillColor({255, 255, 255, 200});
+	pause_rect2.setFillColor({255, 255, 255, 200});
+	pause_rect1.setPosition(380, 300);
+	pause_rect2.setPosition(420, 300);
 
 	sound_pool.resize(4);
 	load_sound("splash");
