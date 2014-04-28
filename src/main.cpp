@@ -142,10 +142,12 @@ void handleEvent(sf::Event& event)
 			game_state = PLAYING;
 			break;
 		} else if (game_state == GAME_OVER) {
-			game_level = 1;
-			game_state = NEW_LEVEL;
-			prepare_new_level();
-			break;
+			if (game_time > game_over_time + 1.f) {
+				game_level = 1;
+				game_state = NEW_LEVEL;
+				prepare_new_level();
+				break;
+			}
 		}
 
 		switch (event.key.code) {
