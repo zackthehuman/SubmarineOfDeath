@@ -165,7 +165,9 @@ void handleEvent(sf::Event& event)
 
 		switch (event.key.code) {
 		case sf::Keyboard::Escape:
-			window.close();
+			if (game_state == PLAYING) {
+				game_state = PAUSED;
+			}
 			break;
 		case sf::Keyboard::Space:
 			if (game_state != PLAYING) break;
