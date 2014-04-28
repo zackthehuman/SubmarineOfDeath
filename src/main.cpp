@@ -56,6 +56,7 @@ std::vector<Explosion> explosions;
 float game_time = 0.f;
 State game_state = NEW_LEVEL;
 int game_level = 1;
+float game_over_time;
 
 float dot(const sf::Vector2f& a, const sf::Vector2f& b) {
 	return a.x*b.x + a.y*b.y;
@@ -220,6 +221,7 @@ void update(float dt)
 		auto distance = get_distance(sprite_submarine.getPosition(), squid.position);
 		if (distance < 32) {
 			game_state = GAME_OVER;
+			game_over_time = game_time;
 			Explosion explosion;
 			explosion.position = sprite_submarine.getPosition();
 			explosion.time_started = game_time;
