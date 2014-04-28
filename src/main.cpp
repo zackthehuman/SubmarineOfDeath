@@ -190,6 +190,20 @@ void update(float dt)
 		sprite_submarine.move(dt * submarine_speed_x * sf::Vector2f(right - left, 0));
 	}
 
+	auto submarine_position = sprite_submarine.getPosition();
+	auto submarine_half_size = sf::Vector2f(texture_submarine.getSize() / 2u);
+	submarine_half_size.y /= 2.f;
+	if (submarine_position.x < submarine_half_size.x) {
+		sprite_submarine.setPosition({submarine_half_size.x, submarine_position.y});
+	} else if (submarine_position.x > 800 - submarine_half_size.x) {
+		sprite_submarine.setPosition({800 - submarine_half_size.x, submarine_position.y});
+	}
+	if (submarine_position.y < submarine_half_size.y) {
+		sprite_submarine.setPosition({submarine_position.x, submarine_half_size.y});
+	} else if (submarine_position.y > 600 - submarine_half_size.y) {
+		sprite_submarine.setPosition({submarine_position.x, 600 - submarine_half_size.y});
+	}
+
 	for (auto& torpedo : torpedos) {
 		torpedo.position.x += 400 * dt;
 	}
