@@ -139,6 +139,11 @@ void handleEvent(sf::Event& event)
 	case sf::Event::KeyPressed:
 		if (game_state == NEW_LEVEL) {
 			game_state = PLAYING;
+		} else if (game_state == GAME_OVER) {
+			game_level = 1;
+			game_state = NEW_LEVEL;
+			prepare_new_level();
+			break;
 		}
 
 		switch (event.key.code) {
