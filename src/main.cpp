@@ -116,15 +116,6 @@ void draw_number(int number, sf::Vector2f position)
 	} while (number /= 10);
 }
 
-void prepare_new_game()
-{
-	game_level = 1;
-	num_torpedos_fired = 0;
-	num_monsters_killed = 0;
-	game_state = NEW_LEVEL;
-	prepare_new_level();
-}
-
 void prepare_new_level()
 {
 	torpedos.clear();
@@ -141,6 +132,15 @@ void prepare_new_level()
 	if (game_level == 1) {
 		beepboop_sound.play();
 	}
+}
+
+void prepare_new_game()
+{
+	game_level = 1;
+	num_torpedos_fired = 0;
+	num_monsters_killed = 0;
+	game_state = NEW_LEVEL;
+	prepare_new_level();
 }
 
 void load_sound(std::string name)
