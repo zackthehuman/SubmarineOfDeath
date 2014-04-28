@@ -347,6 +347,7 @@ void draw()
 	} else if (game_state == GAME_OVER) {
 		window.draw(sprite_gameover);
 		window.draw(sprite_score);
+		draw_number(num_monsters_killed*2 - num_torpedos_fired, {450, 120});
 	} else if (game_state == PAUSED) {
 		fullscreen_rect.setFillColor({0, 0, 0, 128});
 		window.draw(fullscreen_rect);
